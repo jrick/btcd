@@ -25,6 +25,7 @@ import (
 	"github.com/decred/dcrd/dcrec"
 	"github.com/decred/dcrd/dcrec/secp256k1"
 	"github.com/decred/dcrd/dcrutil"
+	hdkeychain2 "github.com/decred/dcrd/hdkeychain/v2"
 )
 
 const (
@@ -556,4 +557,18 @@ func GenerateSeed(length uint8) ([]byte, error) {
 	}
 
 	return buf, nil
+}
+
+// FromV2 converts a hdkeychain/v2 extended key to the v1 API.
+// An error check during string conversion is intentionally dropped for breverity.
+func FromV2(k2 *hdkeychain2.ExtendedKey) *ExtendedKey {
+	k, _ := NewKeyFromString(k2.String())
+	return k
+}
+
+// V2 converts a v1 extended key to the v2 API.
+// An error check during string conversion is intentionally dropped for breverity.
+func (k *ExtendedKey) V2(params hdkeychain2.NetworkParams) *hdkeychain2.ExtendedKey {
+	k2, _ := hdkeychain2.NewKeyFromString(k.String(), params)
+	return k2
 }
