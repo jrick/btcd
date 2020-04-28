@@ -143,7 +143,7 @@ The third category of errors, that is errors returned by the server, can be
 detected by type asserting the error in a *dcrjson.RPCError.  For example, to
 detect if a command is unimplemented by the remote RPC server:
 
-  amount, err := client.GetBalance("")
+  block, err := client.GetBlock(ctx, blockHash)
   if err != nil {
   	if jerr, ok := err.(*dcrjson.RPCError); ok {
   		switch jerr.Code {
@@ -167,8 +167,7 @@ The following full-blown client examples are in the examples directory:
    block connected and block disconnected notifications, and gets the current
    block count
  - dcrwalletwebsockets
-   Connects to a dcrwallet RPC server using TLS-secured websockets, registers
-   for notifications about changes to account balances, and gets a list of
-   unspent transaction outputs (utxos) the wallet can sign
+   Connects to a dcrwallet RPC server using TLS-secured websockets, and gets
+   a list of unspent transaction outputs (utxos) the wallet can sign
 */
 package rpcclient

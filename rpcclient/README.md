@@ -31,7 +31,7 @@ implement and the API is not stable yet.
 ## Major Features
 
 * Supports Websockets (dcrd/dcrwallet) and HTTP POST mode (bitcoin core-like)
-* Provides callback and registration functions for dcrd/dcrwallet notifications
+* Provides callback and registration functions for dcrd notifications
 * Supports dcrd extensions
 * Translates to and from higher-level and easier to use Go types
 * Offers a synchronous (blocking) and asynchronous API
